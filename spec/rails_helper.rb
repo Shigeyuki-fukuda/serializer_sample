@@ -29,6 +29,21 @@ RSpec.configure do |config|
   # FactoryBotの名前空間を省略出来るようになる
   config.include FactoryBot::Syntax::Methods
 
+  config.before(:suite) do
+    Mongoid::Config.clients.keys.each do |conn|
+      DatabaseCleaner[:mongoid, { connection: conn }].strategy = :truncation
+    end
+  end
+
+  config.before(:example) do |example|
+    DatabaseCleaner.start
+    I18n.locale = 'ja'
+  end
+
+  config.after(:example) do
+    DatabaseCleaner.clean
+  end
+
   # If you enable ActiveRecord support you should unncomment these lines,
   # note if you'd prefer not to run each example within a transaction, you
   # should set use_transactional_fixtures to false.
