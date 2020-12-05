@@ -15,7 +15,7 @@ class Api::V1::BlogsController < ApplicationController
   def create
     blog = Blog.new(blog_params)
     if blog.save
-      head :success
+      head :ok
     else
       head :bad_request
     end
