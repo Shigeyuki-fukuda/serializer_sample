@@ -5,7 +5,7 @@ class Api::V1::BlogsController < ApplicationController
       blogs: @blogs.map do |blog|
         {
           id: blog.id,
-          title: blog.titile,
+          title: blog.title,
           content: blog.content
         }
       end
