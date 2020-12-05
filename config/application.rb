@@ -23,6 +23,18 @@ module SerializerSample
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
+    config.time_zone = "Tokyo"
+    config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}").to_s]
+    config.i18n.default_locale = :ja
+
+    config.generators do |g|
+      g.skip_routes true  # trueならroutes.rb変更せず、falseなら通常通り変更
+      g.helper false
+      g.assets false # CSS, JavaScriptファイルは生成しない
+      g.test_framework :rspec, fixture: false # テストフレームワークはRspecでfixtureは生成しない
+      g.controller_specs false
+      g.view_specs false
+    end
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
