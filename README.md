@@ -1,24 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## バージョン
 
-Things you may want to cover:
+- Ruby : 2.6.5
+- Rails : 6.0.3.4
+- MongoDB : 4.2
 
-* Ruby version
+## Dockerの起動停止
 
-* System dependencies
+- Dockerの起動
 
-* Configuration
+```bash
+$ docker-compose -f provisioning/docker-compose.yml up -d
+```
 
-* Database creation
+- Dockerの停止
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```bash
+$ docker-compose -f provisioning/docker-compose.yml up -d
+```
