@@ -9,7 +9,7 @@ RSpec.describe "Api::V1::Blogs", type: :request do
     it "Blog一覧が表示されること" do
       get path
       expect(response).to have_http_status :ok
-      expect(json['blogs'].count).to eq 10
+      expect(json.count).to eq 10
     end
   end
 

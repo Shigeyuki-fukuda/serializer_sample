@@ -1,15 +1,7 @@
 class Api::V1::BlogsController < ApplicationController
   def index
-    @blogs = Blog.order(created_at: :desc)
-    render json: {
-      blogs: @blogs.map do |blog|
-        {
-          id: blog.id,
-          title: blog.title,
-          content: blog.content
-        }
-      end
-    }
+    blogs = Blog.order(created_at: :desc)
+    render json: blogs, each_serializer: BlogSerializer, key_transform: :camel_lower
   end
 
   def create
