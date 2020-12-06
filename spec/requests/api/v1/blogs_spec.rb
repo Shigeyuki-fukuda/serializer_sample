@@ -16,19 +16,19 @@ RSpec.describe "Api::V1::Blogs", type: :request do
   describe "POST /api/v1/blogs" do
     let(:path) { "/api/v1/blogs" }
     let(:title) { Faker::Games::Pokemon.name }
-    let(:params) {
+    let(:params) do
       {
         blog: {
           title: title,
           content: "#{title}の話をしました！"
         }
       }
-    }
+    end
 
     it "Blogが作られること" do
-      post path, params: params
-      expect(response).to have_http_status :ok
-      expect(Blog.count).to eq 1
+      expect {
+        post path, params: params
+      }.to change(Blog, :count).from(0).to(1)
     end
   end
 end
