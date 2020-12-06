@@ -5,4 +5,6 @@ Rails.application.routes.draw do
       resources :blogs
     end
   end
+  resource :sessions, only: [:new, :create], as: :login
+  delete '/logout',  to: 'sessions#destroy'
 end
