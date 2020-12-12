@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :blogs
+      resources :users
     end
   end
+  get    '/login',   to: 'sessions#new'
+  post   '/login',   to: 'sessions#create'
+  delete '/logout',  to: 'sessions#destroy'
+  delete '/logout',  to: 'sessions#destroy'
 end

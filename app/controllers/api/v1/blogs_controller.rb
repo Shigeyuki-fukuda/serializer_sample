@@ -1,11 +1,11 @@
 class Api::V1::BlogsController < ApplicationController
   def index
-    blogs = Blog.order(created_at: :desc)
+    blogs = current_user.blogs.order(created_at: :desc)
     render json: blogs, each_serializer: BlogSerializer, key_transform: :camel_lower
   end
 
   def create
-    blog = Blog.new(blog_params)
+    blog = current_user.blogs.new(blog_params)
     if blog.save
       head :ok
     else
