@@ -8,17 +8,27 @@ class User
 
   field :name, type: String
   field :email, type: String
-  field :password_hash, type: String
+  field :password_digest, type: String
 
   has_many :blogs, class_name: 'Blog', dependent: :destroy
 
   def password
-    return nil if password_hash.nil?
-    Password.new(password_hash)
+    return nil if password_digest.nil?
+    @password ||= BCrypt::Password.new(password_digest)
   end
 
-  def password=(new_password)
-    @password = new_password
-    self.password_hash = Password.create(new_password)
+  def password=(raw_password)
+    if raw_password.blank?
+      self.password_digest = nil
+    else
+      @password = BCrypt::Password.create(raw_password)
+      self.password_digest = @password
+    end
+  end
+
+  # 渡されたトークンがダイジェストと一致したらtrueを返す
+  def authenticated?(raw_password)
+    return false if raw_password.blank?
+    BCrypt::Password.new(password_digest).is_password?(raw_password)
   end
 end
