@@ -1,8 +1,7 @@
 class Api::V1::BlogsController < ApplicationController
   def index
     blogs = current_user.blogs.order(created_at: :desc)
-    serialized_hash = BlogSerializer.new(blogs).serializable_hash
-    render json: serialized_hash
+    render json: BlogSerializer.new(blogs).serializable_hash
   end
 
   def create
