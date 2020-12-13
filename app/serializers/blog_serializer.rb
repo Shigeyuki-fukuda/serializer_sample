@@ -1,9 +1,12 @@
-class BlogSerializer < ActiveModel::Serializer
-  attribute :blog do
+class BlogSerializer
+  include JSONAPI::Serializer
+
+  attributes :blog do |object|
     {
-      id: object.id.to_s,
       title: object.title,
       content: object.content
     }
   end
+
+  set_key_transform :camel_lower
 end
