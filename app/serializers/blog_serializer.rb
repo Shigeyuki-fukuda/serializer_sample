@@ -1,12 +1,5 @@
 class BlogSerializer
-  include JSONAPI::Serializer
+  include Alba::Resource
 
-  attributes :blog do |object|
-    {
-      title: object.title,
-      content: object.content
-    }
-  end
-
-  set_key_transform :camel_lower
+  attributes :id, :title, :content
 end
