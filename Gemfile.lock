@@ -66,6 +66,7 @@ GEM
       zeitwerk (~> 2.2, >= 2.2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    alba (0.12.0)
     bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.5.1)
@@ -100,8 +101,6 @@ GEM
       concurrent-ruby (~> 1.0)
     jbuilder (2.10.1)
       activesupport (>= 5.0.0)
-    jsonapi-serializer (2.1.0)
-      activesupport (>= 4.2)
     listen (3.3.3)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -253,6 +252,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  alba
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug
@@ -261,7 +261,6 @@ DEPENDENCIES
   factory_bot_rails
   faker!
   jbuilder (~> 2.7)
-  jsonapi-serializer
   listen (~> 3.2)
   mongoid
   pry-byebug
